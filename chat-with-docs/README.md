@@ -62,7 +62,6 @@ The system can detect and refuse to process:
 **Note**: Safety filters can be adjusted in `src/rag/prompts.py` based on your use case.
 
 ## 🏗️ Design Decisions & Trade-offs
-
 ### Retrieval store: FAISS + JSONL metadata
 - **Why**: Fast local similarity search (IndexFlatIP), no external dependencies, trivial deployment
 - **✅ Pros**: 
@@ -650,5 +649,7 @@ open htmlcov/index.html
 See [tests/README.md](tests/README.md) for detailed testing guide.
 
 ---
+### Design Architecture 
+Refer [DESIGN.md](DESIGN.md) for architecture details.
 
-**check [DESIGN.md](DESIGN.md) for architecture details.
+
