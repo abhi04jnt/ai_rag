@@ -651,4 +651,4 @@ See [tests/README.md](tests/README.md) for detailed testing guide.
 
 ---
 
-**Questions?** Open an issue or check [DESIGN.md](DESIGN.md) for architecture details.
+**check [DESIGN.md](DESIGN.md) for architecture details.
