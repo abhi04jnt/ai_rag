@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  chat-with-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chat-with-docs
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+      - TOP_K=${TOP_K:-5}
+      - CHUNK_SIZE=${CHUNK_SIZE:-1200}
+      - CHUNK_OVERLAP=${CHUNK_OVERLAP:-200}
+    volumes:
+      # Mount documents directory
+      - ./data/docs:/app/data/docs:ro
+      # Mount index directory (persistent)
+      - index-data:/app/data/index
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  index-data:
+    driver: local
